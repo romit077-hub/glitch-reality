@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { PointerEvent } from "react";
 
 type Mode = "tear" | "fracture" | "afterimage";
 type Point = { x: number; y: number; id: number };
@@ -43,7 +44,7 @@ export default function GlitchRealityDemoPage() {
     return () => window.clearInterval(cleanup);
   }, [mode]);
 
-  const addPoint = (event: React.PointerEvent<HTMLElement>) => {
+  const addPoint = (event: PointerEvent<HTMLElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const point = { x: event.clientX - rect.left, y: event.clientY - rect.top, id: Date.now() + pointId.current++ };
     setPoints((previous) => [...previous.slice(-24), point]);
@@ -91,7 +92,7 @@ export default function GlitchRealityDemoPage() {
           <section ref={stageRef} className={`experience-stage mode-${mode} ${fractured ? "is-fractured" : ""}`} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={() => setDragging(false)} onPointerCancel={() => setDragging(false)} aria-label={activeMode.title + " interactive area"}>
             <div className="stage-grid" aria-hidden="true" />
             <div className="stage-orb orb-one" aria-hidden="true" /><div className="stage-orb orb-two" aria-hidden="true" />
-            <div className="stage-content">
+            <div className="stage-content" style={mode === "tear" ? { maskImage: points.length ? points.map((point) => `radial-gradient(circle 86px at ${point.x}px ${point.y}px, transparent 0 72%, black 100%)`).join(", ") : "none", WebkitMaskImage: points.length ? points.map((point) => `radial-gradient(circle 86px at ${point.x}px ${point.y}px, transparent 0 72%, black 100%)`).join(", ") : "none" } : undefined}>
               <div className="surface-label"><span className="surface-pulse" /> SURFACE LAYER / PUBLIC</div>
               <div className="stage-copy">
                 <div className="mini-logo">A<span>·</span>C</div>
@@ -109,7 +110,6 @@ export default function GlitchRealityDemoPage() {
               <div className="alt-bottom"><span>DIMENSION 02 / UNMAPPED</span><span>DON&apos;T LOOK AWAY</span></div>
             </div>
 
-            {mode === "tear" && <div className="tear-surface" aria-hidden="true" style={{ maskImage: points.length ? points.map((point) => `radial-gradient(circle 86px at ${point.x}px ${point.y}px, transparent 0 72%, black 100%)`).join(", ") : "none", WebkitMaskImage: points.length ? points.map((point) => `radial-gradient(circle 86px at ${point.x}px ${point.y}px, transparent 0 72%, black 100%)`).join(", ") : "none" }} />}
             {mode === "fracture" && <div className="fracture-overlay" aria-hidden="true"><div className="shard shard-a" /><div className="shard shard-b" /><div className="shard shard-c" /><div className="shard shard-d" /><div className="shard shard-e" /></div>}
             {mode === "afterimage" && <div className="afterimage-layer" aria-hidden="true">{points.map((point) => <span key={point.id} className="afterimage-point" style={{ left: point.x, top: point.y, animationDelay: `-${Math.min((Date.now() - point.id) / 1400, 1)}s` }} />)}</div>}
             {mode === "fracture" && <button className="fracture-trigger" onPointerDown={(event) => event.stopPropagation()} onClick={() => setFractured((value) => !value)}>{fractured ? "↻ REASSEMBLE" : "✳ FRACTURE SURFACE"}</button>}
