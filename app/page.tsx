@@ -126,7 +126,7 @@ export default function GlitchRealityDemoPage() {
         <div className="principle"><span className="principle-number">03</span><h3>Respect the user.</h3><p>Responsive by design, reduced-motion aware, and no hidden network calls.</p></div>
       </section>
 
-      <footer className="footer"><a className="brand footer-brand" href="#"><span className="brand-mark">G<span>/</span>R</span><span>GLITCH<span className="brand-muted">//REALITY</span></span></a><span>AN EXPERIMENT IN INTERACTIVE REALITIES</span><span>MADE TO BE BROKEN<span className="footer-pink">.</span></span></footer>
+      <footer className="footer"><a className="brand footer-brand" href="#"><span className="brand-mark">G<span>/</span>R</span><span>GLITCH<span className="brand-muted">{"//REALITY"}</span></span></a><span>AN EXPERIMENT IN INTERACTIVE REALITIES</span><span>MADE TO BE BROKEN<span className="footer-pink">.</span></span></footer>
     </main>
   );
 }
