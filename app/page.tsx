@@ -67,7 +67,7 @@ export default function GlitchRealityDemoPage() {
   return (
     <main className="site-shell">
       <nav className="topbar">
-        <a className="brand" href="#" aria-label="Glitch Reality home"><span className="brand-mark">G<span>/</span>R</span><span>GLITCH<span className="brand-muted">//REALITY</span></span></a>
+        <a className="brand" href="#" aria-label="Glitch Reality home"><span className="brand-mark">G<span>/</span>R</span><span>GLITCH<span className="brand-muted">{"//REALITY"}</span></span></a>
         <div className="topbar-right"><span className="live-dot" /> INTERACTIVE LAB <span className="version">BUILD 0.2</span></div>
       </nav>
 
@@ -105,7 +105,7 @@ export default function GlitchRealityDemoPage() {
             </div>
 
             <div className="alternate-world" aria-hidden="true">
-              <div className="alt-top"><span>/// ROOT ACCESS GRANTED</span><span>SYS.ERR_0xF</span></div>
+              <div className="alt-top"><span>{"/// ROOT ACCESS GRANTED"}</span><span>SYS.ERR_0xF</span></div>
               <div className="alt-core"><div className="core-ring"><div className="core-inner">G<span>R</span></div></div><p className="alt-kicker">YOU FOUND THE OTHER SIDE</p><h3>Nothing is<br /><em>as it renders.</em></h3><p className="alt-copy">The interface was a mask. The signal was always underneath.</p><div className="alt-code">REALITY_LAYER.override(true)<br /><span>MEMBRANE_INTEGRITY: 0.00%</span><br />AWAITING_INPUT<span className="cursor-block">_</span></div></div>
               <div className="alt-bottom"><span>DIMENSION 02 / UNMAPPED</span><span>DON&apos;T LOOK AWAY</span></div>
             </div>
