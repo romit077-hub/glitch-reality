@@ -19,7 +19,7 @@ export default function GlitchRealityDemoPage() {
   const [dragging, setDragging] = useState(false);
   const [counter, setCounter] = useState(1284);
   const pointId = useRef(0);
-  const stageRef = useRef<HTMLElement | null>(null);
+  
 
   const reset = useCallback(() => {
     setPoints([]);
@@ -50,7 +50,7 @@ export default function GlitchRealityDemoPage() {
     setPoints((previous) => [...previous.slice(-24), point]);
   };
 
-  const handlePointerDown = (event: React.PointerEvent<HTMLElement>) => {
+  const handlePointerDown = (event: PointerEvent<HTMLElement>) => {
     if (mode === "tear") {
       setDragging(true);
       event.currentTarget.setPointerCapture(event.pointerId);
@@ -58,7 +58,7 @@ export default function GlitchRealityDemoPage() {
     } else if (mode === "afterimage") addPoint(event);
   };
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
+  const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
     if ((mode === "tear" && dragging) || mode === "afterimage") addPoint(event);
   };
 
@@ -89,7 +89,7 @@ export default function GlitchRealityDemoPage() {
 
         <div className="stage-frame">
           <div className="stage-toolbar"><div className="window-dots"><i /><i /><i /></div><span>SIMULATION / {activeMode.title.toUpperCase()}</span><button onClick={reset} className="reset-button" title="Reset effect (Escape)">↻ RESET</button></div>
-          <section ref={stageRef} className={`experience-stage mode-${mode} ${fractured ? "is-fractured" : ""}`} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={() => setDragging(false)} onPointerCancel={() => setDragging(false)} aria-label={activeMode.title + " interactive area"}>
+          <section className={`experience-stage mode-${mode} ${fractured ? "is-fractured" : ""}`} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={() => setDragging(false)} onPointerCancel={() => setDragging(false)} aria-label={activeMode.title + " interactive area"}>
             <div className="stage-grid" aria-hidden="true" />
             <div className="stage-orb orb-one" aria-hidden="true" /><div className="stage-orb orb-two" aria-hidden="true" />
             <div className="stage-content" style={mode === "tear" ? { maskImage: points.length ? `radial-gradient(circle 86px at ${points[points.length - 1].x}px ${points[points.length - 1].y}px, transparent 0 72%, black 100%)` : "none", WebkitMaskImage: points.length ? `radial-gradient(circle 86px at ${points[points.length - 1].x}px ${points[points.length - 1].y}px, transparent 0 72%, black 100%)` : "none" } : undefined}>
