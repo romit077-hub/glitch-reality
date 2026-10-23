@@ -18,7 +18,7 @@ function pseudoNoise(x: number, y: number, seed: number): number {
 export default function RealityTear({ normalLayer, alternateLayer, initialTearWidth = 68 }: RealityTearProps) {
   const rawId = useId();
   const maskId = `reality-tear-mask-${rawId.replace(/[^a-zA-Z0-9]/g, "")}`;
-  const [tearWidth, setTearWidth] = useState<number>(initialTearWidth);
+  const [tearWidth] = useState<number>(initialTearWidth);
   const [tearCount, setTearCount] = useState<number>(0);
 
   const maskPathRef = useRef<SVGPathElement | null>(null);
