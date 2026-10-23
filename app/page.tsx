@@ -92,7 +92,7 @@ export default function GlitchRealityDemoPage() {
           <section ref={stageRef} className={`experience-stage mode-${mode} ${fractured ? "is-fractured" : ""}`} onPointerDown={handlePointerDown} onPointerMove={handlePointerMove} onPointerUp={() => setDragging(false)} onPointerCancel={() => setDragging(false)} aria-label={activeMode.title + " interactive area"}>
             <div className="stage-grid" aria-hidden="true" />
             <div className="stage-orb orb-one" aria-hidden="true" /><div className="stage-orb orb-two" aria-hidden="true" />
-            <div className="stage-content" style={mode === "tear" ? { maskImage: points.length ? points.map((point) => `radial-gradient(circle 86px at ${point.x}px ${point.y}px, transparent 0 72%, black 100%)`).join(", ") : "none", WebkitMaskImage: points.length ? points.map((point) => `radial-gradient(circle 86px at ${point.x}px ${point.y}px, transparent 0 72%, black 100%)`).join(", ") : "none" } : undefined}>
+            <div className="stage-content" style={mode === "tear" ? { maskImage: points.length ? `radial-gradient(circle 86px at ${points[points.length - 1].x}px ${points[points.length - 1].y}px, transparent 0 72%, black 100%)` : "none", WebkitMaskImage: points.length ? `radial-gradient(circle 86px at ${points[points.length - 1].x}px ${points[points.length - 1].y}px, transparent 0 72%, black 100%)` : "none" } : undefined}>
               <div className="surface-label"><span className="surface-pulse" /> SURFACE LAYER / PUBLIC</div>
               <div className="stage-copy">
                 <div className="mini-logo">A<span>·</span>C</div>
